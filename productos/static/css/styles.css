@@ -7,6 +7,7 @@ body{
 }
 
 .nav{
+    position: relative;
     display: grid;
     grid-template-rows: repeat(2, 60px);
     background-color: #5800FF;
@@ -17,6 +18,15 @@ body{
     align-self: center;
     justify-self: center;
     font-size: 2.2em;
+}
+
+.nav__shop{
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    width: 30px;
+    filter: invert(1);
+    cursor: pointer;
 }
 
 .list{
