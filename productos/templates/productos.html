@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,8 +6,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Productos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <h1>Productos</h1>
+    <header class="header">
+        <nav class="nav">
+            <p class="nav__title">IONIX S.A</p>
+            <ul class="list">
+                <li class="list__item">INICIO</li>
+                <li class="list__item">CUADERNOS</li>
+                <li class="list__item">MARCADORES</li>
+                <li class="list__item">LAPICES DE COLORES</li>
+            </ul>
+        </nav>
+    </header>
 </body>
 </html>
