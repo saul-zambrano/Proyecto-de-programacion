@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'ionix_sa.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysqlclient',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ionix_sa',
         'USER': 'root',
         'PASSWORD': 'admin',
