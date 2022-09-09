@@ -77,8 +77,11 @@ WSGI_APPLICATION = 'ionix_sa.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysqlclient',
+        'NAME': 'ionix_sa',
+        'USER': 'root',
+        'PASSWORD': 'admin',
+        'HOST': 'localhost'
     }
 }
 
