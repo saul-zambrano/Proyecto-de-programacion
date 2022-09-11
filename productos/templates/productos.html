@@ -26,11 +26,12 @@
         </nav>
     </header>
     <main>
-        <ul>
-            {% for producto in productos_registrados %}
-                <li>{{ producto.nombre }} {{ producto.descripcion }}</li>
-            {% endfor %}
-        </ul>
+        {% for producto in productos_registrados %}
+        <div>
+                <h1>{{ producto.nombre }}</h1>
+                <p>{{ producto.descripcion }}</p>
+        </div>
+        {% endfor %}
         
     </main>
 </body>

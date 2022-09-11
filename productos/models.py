@@ -44,6 +44,7 @@ class Producto(models.Model):
     descripcion = models.CharField(max_length=70)
     precio = models.FloatField()
     stock = models.IntegerField()
+    imagen = models.CharField(max_length=60)
 
     def __str__(self) -> str:
         return f'Domicilio: {self.id}: {self.nombre} {self.descripcion} {self.precio} {self.stock}'
