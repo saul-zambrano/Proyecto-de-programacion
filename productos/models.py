@@ -45,7 +45,7 @@ class Producto(models.Model):
     imagen = models.CharField(max_length=60)
 
     def __str__(self) -> str:
-        return f'Domicilio: {self.id}: {self.nombre} {self.descripcion} {self.precio} {self.stock}'
+        return f'Producto: {self.id}: {self.nombre} {self.descripcion} {self.precio} {self.stock}'
 
 class Orden(models.Model):
     id = models.AutoField(primary_key=True)
@@ -55,7 +55,7 @@ class Orden(models.Model):
     total = models.FloatField()
 
     def __str__(self) -> str:
-        return f'Domicilio: {self.id}: {self.id_usuario} {self.id_metodo_pago} {self.id_domicilio} {self.total}'
+        return f'Orden: {self.id}: {self.id_usuario} {self.id_metodo_pago} {self.id_domicilio} {self.total}'
 
 class OrdenDetalle(models.Model):
     id = models.AutoField(primary_key=True)
@@ -65,7 +65,7 @@ class OrdenDetalle(models.Model):
     precio = models.FloatField()
 
     def __str__(self) -> str:
-        return f'Domicilio: {self.id}: {self.id_orden} {self.id_producto} {self.cantidad} {self.precio}'
+        return f'Orden Detalle: {self.id}: {self.id_orden} {self.id_producto} {self.cantidad} {self.precio}'
 
 class Carrito(models.Model):
     id = models.AutoField(primary_key=True)
@@ -74,4 +74,4 @@ class Carrito(models.Model):
     cantidad = models.IntegerField()
 
     def __str__(self) -> str:
-        return f'Domicilio: {self.id}: {self.id_usuario} {self.id_producto} {self.cantidad}'
+        return f'Carrito: {self.id}: {self.id_usuario} {self.id_producto} {self.cantidad}'
