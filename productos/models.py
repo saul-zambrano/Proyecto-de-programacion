@@ -1,3 +1,4 @@
+from pyexpat import model
 from django.db import models
 
 # Create your models here.
@@ -9,13 +10,27 @@ class CategoriaProducto(models.Model):
         return f'Categoria Producto: {self.id}: {self.nombre}'
 
 
-class Usuario(models.Model):
+class Cliente(models.Model):
     id = models.AutoField(primary_key=True)
     email = models.CharField(max_length=60)
     password = models.CharField(max_length=15)
+    nombres = models.CharField(max_length=60)
+    apellidos = models.CharField(max_length=60)
+    dni = models.CharField(max_length=10)
 
     def __str__(self) -> str:
-        return f'Usuario: {self.id}: {self.nombre} {self.email} {self.password}'
+        return f'Cliente: {self.id}: {self.nombre} {self.email} {self.password}'
+
+
+class Direccion(models.Model):
+    id = models.AutoField(primary_key=True)
+    id_cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
+    pais = models.CharField(max_length=60)
+    ciudad = models.CharField(max_length=60)
+    direccion = models.CharField(max_length=60)
+
+    def __str__(self) -> str:
+        return f'Direccion: {self.id}: IdCliente{self.id_cliente} {self.pais} {self.ciudad} {self.direccion}'
 
 class MetodoPago(models.Model):
     id = models.AutoField(primary_key=True)
@@ -26,7 +41,7 @@ class MetodoPago(models.Model):
 
 class Domicilio(models.Model):
     id = models.AutoField(primary_key=True)
-    id_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    id_usuario = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     pais = models.CharField(max_length=60)
     ciudad = models.CharField(max_length=60)
     direccion = models.CharField(max_length=100)
@@ -49,7 +64,7 @@ class Producto(models.Model):
 
 class Orden(models.Model):
     id = models.AutoField(primary_key=True)
-    id_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    id_usuario = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     id_metodo_pago = models.ForeignKey(MetodoPago, on_delete=models.CASCADE)
     id_domicilio = models.ForeignKey(Domicilio, on_delete=models.CASCADE)
     total = models.FloatField()
@@ -69,7 +84,7 @@ class OrdenDetalle(models.Model):
 
 class Carrito(models.Model):
     id = models.AutoField(primary_key=True)
-    id_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    id_usuario = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     id_producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
     cantidad = models.IntegerField()
 
