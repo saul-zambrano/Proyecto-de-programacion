@@ -2,7 +2,7 @@ from django.shortcuts import render
 from productos.models import Producto
 # Create your views here.
 def cuadernos(request):
-    productos_registrados = Producto.objects.filter(cat_prod_id=3)
+    productos_registrados = Producto.objects.filter(cat_prod_id=1)
     return render(request, 'cuadernos.html', {'productos_registrados':productos_registrados})
 
 def lapices_colores(request):
@@ -11,6 +11,5 @@ def lapices_colores(request):
     
     
 def marcadores(request):
-    productos_registrados = Producto.objects.filter(cat_prod_id=1)
-
+    productos_registrados = Producto.objects.filter(cat_prod_id=3)
     return render(request, 'marcadores.html', {'productos_registrados':productos_registrados})
