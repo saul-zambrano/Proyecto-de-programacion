@@ -39,16 +39,6 @@ class MetodoPago(models.Model):
     def __str__(self) -> str:
         return f'Metodo de pago: {self.id}: {self.nombre}'
 
-class Domicilio(models.Model):
-    id = models.AutoField(primary_key=True)
-    id_usuario = models.ForeignKey(Cliente, on_delete=models.CASCADE)
-    pais = models.CharField(max_length=60)
-    ciudad = models.CharField(max_length=60)
-    direccion = models.CharField(max_length=100)
-
-    def __str__(self) -> str:
-        return f'Domicilio: {self.id}: {self.pais} {self.ciudad} {self.direccion}'
-
 
 class Producto(models.Model):
     id = models.AutoField(primary_key=True)
@@ -66,7 +56,7 @@ class Orden(models.Model):
     id = models.AutoField(primary_key=True)
     id_usuario = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     id_metodo_pago = models.ForeignKey(MetodoPago, on_delete=models.CASCADE)
-    id_domicilio = models.ForeignKey(Domicilio, on_delete=models.CASCADE)
+    id_domicilio = models.ForeignKey(Direccion, on_delete=models.CASCADE)
     total = models.FloatField()
 
     def __str__(self) -> str:
