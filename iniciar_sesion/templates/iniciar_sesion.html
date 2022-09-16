@@ -13,6 +13,25 @@
     <script src="{% static 'script/main.js' %}"></script>
 </head>
 <body>
-    
-</body>
+    <header class="header">
+        <p class="header__title">IONIX S.A</p>
+    </header>
+    <main>
+        <h1 class="main__title">Ingresar con mi cuenta</h1>
+        <section class="container-form">
+            <form class="form" action="" method="POST">
+                <label class="form__label" for="email">Correo electrónico</label>
+                <input class="form__input" type="email" id="email">
+                <label class="form__label" for="password">Contraseña</label>
+                <input class="form__input" type="password" id="password">
+                <input class="form__input form__submit" type="submit" value="INGRESAR">
+            </form>
+            <div class="container-register">
+                <p class="container-register__information">Con tu cuenta podrás realizar compras en línea, consultar el saldo de tu Crédito De Prati, revisar tus estados del crédito y acceder a todos los servicios que deprati.com, tiene para tí.</p>
+                <a class="container-register__button form__input" href="{% url 'registrarse' %}">Registrarse</a>
+            </div>
+        </section>
+        
+    </main>
+</body> 
 </html>
