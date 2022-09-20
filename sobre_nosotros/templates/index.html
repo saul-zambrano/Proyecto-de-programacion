@@ -23,9 +23,9 @@
                 <li class="list__item"><a class="list__item__link" href="{%  url 'lapices_colores'%}">LAPICES DE COLORES</a></li>
                 <li class="list__item"><a class="list__item__link" href="{%  url 'iniciar_sesion'%}">INICIAR SESIÓN</a></li>
             </ul>
-            <img class="nav__shop" src="{% static 'images/shop.svg' %}" alt="">
+            <a href="{% url 'carrito' %}"><img class="nav__shop" src="{% static 'images/shop.svg' %}" alt=""></a>        
         </nav>
-    </header>   
+    </header> 
     <main>
         <section class="container__detalle-proyecto">
             <div class="container__detalle-proyecto__information">

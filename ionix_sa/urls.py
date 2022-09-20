@@ -20,6 +20,7 @@ from django.urls import path
 from productos.views import marcadores, cuadernos, lapices_colores
 from sobre_nosotros.views import inicio
 from iniciar_sesion.views import iniciar_sesion, registrarse, registrar_usuario
+from carrito.views import carrito
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,5 +30,6 @@ urlpatterns = [
     path('lapices_colores', lapices_colores, name='lapices_colores'),
     path('iniciar_sesion', iniciar_sesion, name='iniciar_sesion'),
     path('iniciar_sesion/registrarse', registrarse, name='registrarse'),
-    path('registrar_usuario', registrar_usuario, name='registrar_usuario')
+    path('registrar_usuario', registrar_usuario, name='registrar_usuario'),
+    path('carrito', carrito, name='carrito')
 ]
