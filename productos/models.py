@@ -54,9 +54,10 @@ class Producto(models.Model):
 
 class Orden(models.Model):
     id = models.AutoField(primary_key=True)
-    id_usuario = models.ForeignKey(Cliente, on_delete=models.CASCADE)
+    id_cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     id_metodo_pago = models.ForeignKey(MetodoPago, on_delete=models.CASCADE)
     id_domicilio = models.ForeignKey(Direccion, on_delete=models.CASCADE)
+    fecha = models.DateTimeField()
     total = models.FloatField()
 
     def __str__(self) -> str:
@@ -67,7 +68,8 @@ class OrdenDetalle(models.Model):
     id_orden = models.ForeignKey(Orden, on_delete=models.CASCADE)
     id_producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
     cantidad = models.IntegerField()
-    precio = models.FloatField()
+    precio = models.DecimalField(max_digits=12, decimal_places=2)
+    total = models.DecimalField(max_digits=12, decimal_places=2)
 
     def __str__(self) -> str:
         return f'Orden Detalle: {self.id}: {self.id_orden} {self.id_producto} {self.cantidad} {self.precio}'
