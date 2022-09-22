@@ -19,17 +19,17 @@ from django.contrib import admin
 from django.urls import path
 from productos.views import marcadores, cuadernos, lapices_colores
 from sobre_nosotros.views import inicio
-from iniciar_sesion.views import iniciar_sesion, registrarse, registrar_usuario
 from carrito.views import carrito
-
+from cliente.views import cliente
+from cliente.views import metodo_pago
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', inicio, name='inicio'),
     path('marcadores', marcadores, name='marcadores'),
     path('cuadernos', cuadernos, name='cuadernos'),
     path('lapices_colores', lapices_colores, name='lapices_colores'),
-    path('iniciar_sesion', iniciar_sesion, name='iniciar_sesion'),
-    path('iniciar_sesion/registrarse', registrarse, name='registrarse'),
-    path('registrar_usuario', registrar_usuario, name='registrar_usuario'),
-    path('carrito', carrito, name='carrito')
+    path('carrito', carrito, name='carrito'),
+    path('cliente', cliente, name='cliente'),
+    path('metodo_pago', metodo_pago, name="metodo_pago")
+    # path('data', data, name="data")
 ]

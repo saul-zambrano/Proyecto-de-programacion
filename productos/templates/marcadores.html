@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/productos.css' %}">
-    <script src="{% static 'script/main.js' %}"></script>
+    <script src="{% static 'script/main.js' %}" defer></script>
 </head>
 <body>
     <header class="header">
@@ -21,7 +21,6 @@
                 <li class="list__item"><a class="list__item__link" href="{%  url 'cuadernos'%}">CUADERNOS</a></li>
                 <li class="list__item"><a class="list__item__link" href="{% url 'marcadores' %}">MARCADORES</a></li> 
                 <li class="list__item"><a class="list__item__link" href="{%  url 'lapices_colores'%}">LAPICES DE COLORES</a></li>
-                <li class="list__item"><a class="list__item__link" href="{%  url 'iniciar_sesion'%}">INICIAR SESIÓN</a></li>
             </ul>
             <a href="{% url 'carrito' %}"><img class="nav__shop" src="{% static 'images/shop.svg' %}" alt=""></a>        
         </nav>
@@ -33,12 +32,13 @@
             {% for producto in productos_registrados %}
                 {% static '' as baseUrl %}
             <div class="post">
-                    <img class="post__images" src="{{baseUrl}}images/post/marcadores/{{producto.imagen}}" alt="">
+                    <img class="post__images" src="{{baseUrl}}images/post/cuadernos/{{producto.imagen}}" alt="">
                     <h2 class="post__title">{{ producto.nombre }}</h2>
-                    <p class="post__price"><strong class="post__price__word">Precio:</strong>{{ producto.precio }}</p>  
+                    <p class="post__price">Precio:<strong class="post__price__word">{{ producto.precio }}</strong></p>  
                     <button class="post__button">Agregar al carrito</button>
             </div>
             {% endfor %}  
+            
         </section>
         
     </main>

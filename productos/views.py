@@ -13,3 +13,7 @@ def lapices_colores(request):
 def marcadores(request):
     productos_registrados = Producto.objects.filter(cat_prod_id=3)
     return render(request, 'marcadores.html', {'productos_registrados':productos_registrados})
+
+
+
+    

@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cliente</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/registrarse.css' %}">
+    <script src="{% static 'script/main.js' %}"></script>
+</head>
+<body>
+    <header class="header">
+        <p class="header__title">IONIX S.A</p>
+    </header>
+    <main class="main">
+        <h1 class="main__title">Ingresa tus datos</h1>
+        <section class="container-form">
+            <form class="form" action="cliente" method="POST">
+                {% csrf_token %}
+                <h2 class="form__title">INFORMACIÓN PARA ENVÍO</h2>
+                <input class="form__input" type="email" name="email" placeholder="Ingrese su email" required>
+                <h2 class="form__title">FORMA DE ENTREGA</h2>
+                <p>RETIRO FORMA FISICA</p>
+                <h2 class="form__title">DATOS DE ENVIO NECESARIOS</h2>
+                <select class="form__input" name="pais" id="pais">
+                    <option value="ecuador">Ecuador</option>
+                </select>
+                <input class="form__input" type="text" placeholder="Nombres" name="nombres" required>
+                <input class="form__input" type="text" placeholder="Apellido" name="apellidos" required>
+                <input class="form__input" type="text" placeholder="Usuario de Instagram" name="apellidos" required>
+                <input class="form__input" type="text" placeholder="Direccion detallada de su vivienda" name="apellidos" required>
+                <input class="form__input" type="text" maxlength="10" placeholder="Número de Cédula" name="dni" required>
+                <input class="form__input" type="text" placeholder="Ciudad" name="ciudad" required>
+                <input class="form__input" type="text" placeholder="Provincia" name="provincia" required>
+                <input class="form__input" type="text" placeholder="Teléfono Celular" name="celular" required>
+                <input class="form__input form__submit" class="form__input form__submit" type="submit" value="SIGUIENTE">
+            </form>
+        </section>
+    </main>
+</body>
+</html>

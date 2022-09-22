@@ -21,7 +21,6 @@
                 <li class="list__item"><a class="list__item__link" href="{%  url 'cuadernos'%}">CUADERNOS</a></li>
                 <li class="list__item"><a class="list__item__link" href="{% url 'marcadores' %}">MARCADORES</a></li> 
                 <li class="list__item"><a class="list__item__link" href="{%  url 'lapices_colores'%}">LAPICES DE COLORES</a></li>
-                <li class="list__item"><a class="list__item__link" href="{%  url 'iniciar_sesion'%}">INICIAR SESIÓN</a></li>
             </ul>
             <a href="{% url 'carrito' %}"><img class="nav__shop" src="{% static 'images/shop.svg' %}" alt=""></a>        
         </nav>
@@ -31,50 +30,43 @@
         <table class="table-product">
             <thead class="thead-product"> 
                 <tr>
-                    <th>PRODUCTO</th>
+                    <th colspan="2">PRODUCTO</th>
                     <th>CANTIDAD</th>
                     <th>TOTAL</th>
                 </tr>
             </thead>
             <tbody class="tbody-product">
                 <tr class="tbody-product__row">
-                    <th>
+                    <td>
                         <div class="tbody-product__images">
                             <img src="{% static 'images/1.png' %}" alt="">
                         </div>
-                    </th>
-                    <th>
-                        <a href="">Marcador Norma</a>
-                        <div>23.09</div>
+                    </td>
+                    <td>
+                        <a href="">Marcadores Normas</a>
+                        <p>24.50</p>
                         <dl>
-                            <dt>Talla</dt>
+                            <dt>Talla:</dt>
                             <dd>XS</dd>
                         </dl>
-                    </th>
-                    <th>
-                        <span>46.50</span>
-                    </th>
+                    </td>
+                    <td>
+                        <input type="number" min="1" max="100" value="1">
+                        <button>Eliminar</button>
+                    </td>
+                    <td>
+                        <p>$50.25</p>
+                    </td>
                 </tr>
-                <tr class="tbody-product__row">
-                    <th>
-                        <div class="tbody-product__images">
-                            <img src="{% static 'images/1.png' %}" alt="">
-                        </div>
-                    </th>
-                    <th>
-                        <a href="">Marcador Norma</a>
-                        <div>23.09</div>
-                        <dl>
-                            <dt>Talla</dt>
-                            <dd>XS</dd>
-                        </dl>
-                    </th>
-                    <th>
-                        <span>46.50</span>
-                    </th>
-                </tr>
+                
+                   
             </tbody>
         </table>
+        <section>
+            <h2>Total</h2>
+            <p>67.40</p>
+            <a href="{% url 'cliente' %}">PAGAR PEDIDO</a>
+        </section>
     </main>
 </body>
 </html>

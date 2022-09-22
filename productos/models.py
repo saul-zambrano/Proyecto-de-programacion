@@ -16,6 +16,7 @@ class Cliente(models.Model):
     password = models.CharField(max_length=15)
     nombres = models.CharField(max_length=60)
     apellidos = models.CharField(max_length=60)
+    celular = models.CharField(max_length=10)
     dni = models.CharField(max_length=10)
 
     def __str__(self) -> str:
@@ -26,6 +27,7 @@ class Direccion(models.Model):
     id = models.AutoField(primary_key=True)
     id_cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     pais = models.CharField(max_length=60)
+    provincia = models.CharField(max_length=60)
     ciudad = models.CharField(max_length=60)
     direccion = models.CharField(max_length=60)
 
