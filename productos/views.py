@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from productos.models import Producto
+from carrito.views import agregar_producto
 # Create your views here.
 def cuadernos(request):
     productos_registrados = Producto.objects.filter(cat_prod_id=1)

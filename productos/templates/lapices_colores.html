@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/productos.css' %}">
-    <!-- <script src="{% static 'script/main.js' %}" defer></script> -->
+    <script src="{% static 'script/main.js' %}" defer></script>
 </head>
 <body>
     <header class="header">
@@ -26,15 +26,38 @@
         </nav>
     </header> 
     <main>
-        <h1 class="main__title">Lapices de Colores</h1>
+        <div id="slider-container" class="slider-container">
+            <div class="slider" id="slider">
+              <!-- <div class="slider__element slider__element--lightcoral">1</div> -->
+                <div class="slider__element">
+                        <img src="{% static 'images/banner/banner-2.png' %}" alt="">
+                </div>
+                <div class="slider__element">
+                        <img src="{% static 'images/banner/banner-1.jpg' %}" alt="" />
+                </div>
+                <div class="slider__element">
+                    <img src="{% static 'images/banner/banner-3.jpg' %}" alt="" />
+                </div>
+            </div>
+          </div>
+          <div class="slider-buttons">
+            <button id="button-left" class="button">&lt;</button>
+            <button id="button-right" class="button">&gt;</button>
+          </div>
         <section class="container-product">
             {% for producto in productos_registrados %}
                 {% static '' as baseUrl %}
             <div class="post">
-                    <img class="post__images" src="{{baseUrl}}{{producto.imagen}}" alt="">
-                    <h2 class="post__title">{{ producto.nombre }}</h2>
-                    <p class="post__price">Precio:<strong class="post__price__word">{{ producto.precio }}</strong></p>  
-                    <a href="{% url 'Add' producto.id_producto %}" class="post__button">Agregar al carrito</a>
+                <div class="post-images">
+                    <img class="post-images__img" src="{{baseUrl}}{{producto.imagen}}" alt="">
+                </div>
+                <div class="post-container">
+                    <div class="post-information">
+                        <h2 class="post-information__title">{{ producto.nombre }}</h2>
+                        <p class="post-information__price">Precio:<strong class="post-information__price__word">${{ producto.precio }}</strong></p>  
+                        <a href="{% url 'Add' producto.id_producto %}" class="post-information__button">Agregar al carrito</a>
+                    </div>
+                </div> 
             </div>
             {% endfor %}  
             

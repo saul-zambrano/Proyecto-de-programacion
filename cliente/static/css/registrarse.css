@@ -22,31 +22,95 @@ body{
     font-size: 2.2em;
 }
 
-.main__title{
-    text-align: center;
+/* main */
+
+.main{
+    display: grid;
+    grid-template-columns: 1fr 550px;
 }
 
-.form__label,
-.form__input{
-    display: block;
-    width: 300px;
-    margin-bottom: 1em;
-}
-
-.form__input{
-    height: 40px;
-    border-radius: 5px;
-    border: 1px solid #999;
+.container-carrito-productos{
+    width: 100%;
 }
 
 .container-form{
-    display: flex;
-    justify-content: center;
-    padding: 1em;
+    width: 100%;
+    padding: 2em;
 }
 
-.form__submit{
+.form__input{
+    width: 100%;
+    padding: 1.2em;
+}
+
+
+.form__label{
+    display: block;
+}
+
+.container-button{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container-button__submit{
+    width: 200px;
     background-color: #5800FF;
+    border: none;
+    padding: 1.3em;
     color: #E8F9F9;
-    margin-top: 2em;
+    cursor: pointer;
+}
+
+.container-button__back-carrito{
+    text-decoration: none;
+    color: #5800FF;
+    cursor: pointer;
+}
+
+.table-product{
+    width: 100%;
+    padding: 2em 0;
+}
+
+.tbody-product__images img{
+    width: 100%;
+}
+
+.row{
+    height: 250px;
+}
+
+.row-celda__images{
+    width: 100px;
+    height: 100px;
+    border-radius: 15px;
+}
+
+.row-celda__images img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.row-celda--display{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.row-celda__cantidad{
+    margin: 0 2em;
+}
+
+.container-total{
+    display: flex;
+    justify-content: space-between;
+    margin: 1em;
+}
+
+.thead-product{
+    position: absolute;
+    opacity: 0;
 }

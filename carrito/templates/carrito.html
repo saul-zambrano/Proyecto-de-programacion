@@ -62,13 +62,6 @@
                     </td>
                 </tr>
                 {% endfor %}
-                <tr>
-                    <td colspan="4">
-                        <h2 class="container-total__title">Total</h2>
-                        <p class="container-total__total">${{ total_carrito }}</p>
-                        <a class="container-total__button" href="{% url 'cliente' %}">PAGAR PEDIDO</a>
-                    </td>
-                </tr>
                 {% else %}
                 <tr>
                     <td colspan="4">
@@ -79,11 +72,16 @@
             </tbody>
         </table>
         <section class="container-total">
+            <div class="container-total__item1"><a class="container-total__limpiar" href="{% url 'CLS' %}">Limpiar</a></div>
+            <div class="container-total__item2">
+                <h2 class="container-total__title">Total</h2>
+                <p class="container-total__total">${{ total_carrito }}</p>
+                <a class="container-total__button" href="{% url 'cliente' %}">PAGAR PEDIDO</a>
+            </div>
             
         </section>
         <section class="container-option">
-            <div><a class="container-option__button" href="{% url 'CLS' %}">Limpiar</a></div>
-            <div><a href="container-option__button">Guardar</a></div>
+            
         </section>
     </main>
 </body>

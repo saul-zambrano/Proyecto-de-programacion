@@ -17,28 +17,75 @@
         <p class="header__title">IONIX S.A</p>
     </header>
     <main class="main">
-        <h1 class="main__title">Ingresa tus datos</h1>
         <section class="container-form">
-            <form class="form" action="cliente" method="POST">
+            <h1 class="main__title">Ingresa tus datos</h1>
+            <form class="form" action="metodo_pago" method="POST">
                 {% csrf_token %}
-                <h2 class="form__title">INFORMACIÓN PARA ENVÍO</h2>
-                <input class="form__input" type="email" name="email" placeholder="Ingrese su email" required>
-                <h2 class="form__title">FORMA DE ENTREGA</h2>
-                <p>RETIRO FORMA FISICA</p>
-                <h2 class="form__title">DATOS DE ENVIO NECESARIOS</h2>
-                <select class="form__input" name="pais" id="pais">
-                    <option value="ecuador">Ecuador</option>
-                </select>
-                <input class="form__input" type="text" placeholder="Nombres" name="nombres" required>
-                <input class="form__input" type="text" placeholder="Apellido" name="apellidos" required>
-                <input class="form__input" type="text" placeholder="Usuario de Instagram" name="apellidos" required>
-                <input class="form__input" type="text" placeholder="Direccion detallada de su vivienda" name="apellidos" required>
-                <input class="form__input" type="text" maxlength="10" placeholder="Número de Cédula" name="dni" required>
-                <input class="form__input" type="text" placeholder="Ciudad" name="ciudad" required>
-                <input class="form__input" type="text" placeholder="Provincia" name="provincia" required>
-                <input class="form__input" type="text" placeholder="Teléfono Celular" name="celular" required>
-                <input class="form__input form__submit" class="form__input form__submit" type="submit" value="SIGUIENTE">
+                <div>
+                    <h2 class="form__title">Información para Envío</h2>
+                    <input class="form__input" type="email" name="email" placeholder="Ingrese su email" required>
+                </div>
+                <div>
+                    <h2 class="form__title">Forma de Entrega</h2>
+                    <label class="form__label" for="fisico"><input class="form__radio" type="radio" value="retiro_fisico" name="entrega" id="fisico" required checked>Retiro de Forma Física</label>
+                    
+                    <label class="form__label" for="servientrega"><input class="form__radio" type="radio" value="servientrega" name="entrega" id="servientrega" disabled>Servientrega</label>
+                </div>
+                <div>
+                    <h2>Lugar de Retiro</h2>
+                    <p>Mariano Acosta & Avenido los rosales 314</p>
+                </div>
+                
+                <div class="container-button">   
+                    <a class="container-button__back-carrito" href="">Volver al carrito</a>           
+                    <input class="container-button__submit" type="submit" value="Continuar con el Pago">
+                </div>
+                
             </form>
+        </section>
+        <section class="container-carrito-productos">
+            <table id="table" class="table-product">
+                <thead class="thead-product"> 
+                    <tr>
+                        <th colspan="2">PRODUCTO</th>
+                        <th>CANTIDAD</th>
+                        <th>TOTAL</th>
+                    </tr>
+                </thead>
+                <tbody class="tbody-product">
+                    {% if request.session.carrito.items %}
+                    {% for key, value in request.session.carrito.items %}
+                    <tr class="row">
+                        <td class="row-celda">
+                            <div class="row-celda__images">
+                                {% static '' as baseUrl %}
+                                <img src="{{baseUrl}}{{value.images}}" alt=""> 
+                            </div>
+                        </td>
+                        <td class="row-celda">
+                            <p>{{ value.nombre }}</p>  
+                            <p>Precio: {{ value.precio }}</p>
+                        </td>
+                        <td class="row-celda ">
+                            <div class="row-celda--display">
+                                <a href="{% url  'Add' value.producto_id %}"><i class="fa fa-solid fa-plus"></i></a>
+                                <p class="row-celda__cantidad">{{ value.cantidad }}</p>
+                                <a href="{% url  'Sub' value.producto_id %}"><i class="fa fa-solid fa-minus"></i></a>
+                            </div>
+                        </td>
+                        <td class="row-celda">
+                            <p>${{ value.acumulado }}</p>
+                        </td>
+                        {% endfor %}
+                        {% endif %}
+                    </tr>
+                </tbody>
+            </table>
+            <div class="container-total__item2">
+                <h2 class="container-total__title">Total</h2>
+                <p class="container-total__total">${{ total_carrito }}</p>
+                <a class="container-total__button" href="{% url 'cliente' %}">PAGAR PEDIDO</a>
+            </div>
         </section>
     </main>
 </body>

@@ -1,30 +1,69 @@
-// let post = document.getElementsByClassName('post')
-// let post__button = document.getElementsByClassName('post__button')
+const sliderContainer = document.getElementById('slider-container');
+const slider = document.getElementById('slider');
+const buttonLeft = document.getElementById('button-left');
+const buttonRight = document.getElementById('button-right');
 
-    
-// for(let button of post__button){
-//     button.addEventListener('click', (e)=>{        
-//         item_img = e.target.parentElement.children[0].currentSrc
-//         item_title = e.target.parentElement.children[1].textContent
-//         item_price = e.target.parentElement.children[2].children[0].textContent
-//         item_price = parseFloat(item_price)
-//         cantidad = 1
-//         total = item_price*cantidad
-//         item = {
-//             img: item_img,
-//             title: item_title,
-//             item_price: item_price,
-//             cantidad: cantidad,
-//             total: total
-//         }
-//         if(localStorage.getItem(item_title) == null){
-//             localStorage.setItem(item_title, JSON.stringify(item))
-//         }else{
-//            item_modificar = JSON.parse(localStorage.getItem(item_title))
-//            item_modificar.cantidad += 1
-//            localStorage.setItem(item_title, JSON.stringify(item_modificar))
-//         }
-//     })
-// }
+const sliderElements = document.querySelectorAll('.slider__element');
+const rootStyles = document.documentElement.style;
+
+let slideCounter = 0;
+let isInTransition = false;
+
+const DIRECTION = {
+  RIGHT: 'RIGHT',
+  LEFT: 'LEFT'
+};
+
+const getTransformValue = () =>
+  Number(rootStyles.getPropertyValue('--slide-transform').replace('px', ''));
+
+const reorderSlide = () => {
+  const transformValue = getTransformValue();
+  rootStyles.setProperty('--transition', 'none');
+  if (slideCounter === sliderElements.length - 1) {
+    slider.appendChild(slider.firstElementChild);
+    rootStyles.setProperty(
+      '--slide-transform',
+      `${transformValue + sliderElements[slideCounter].scrollWidth}px`
+    );
+    slideCounter--;
+  } else if (slideCounter === 0) {
+    slider.prepend(slider.lastElementChild);
+    rootStyles.setProperty(
+      '--slide-transform',
+      `${transformValue - sliderElements[slideCounter].scrollWidth}px`
+    );
+    slideCounter++;
+  }
+
+  isInTransition = false;
+};
+
+const moveSlide = direction => {
+  if (isInTransition) return;
+  const transformValue = getTransformValue();
+  rootStyles.setProperty('--transition', 'transform 1s');
+  isInTransition = true;
+  if (direction === DIRECTION.LEFT) {
+    rootStyles.setProperty(
+      '--slide-transform',
+      `${transformValue + sliderElements[slideCounter].scrollWidth}px`
+    );
+    slideCounter--;
+  } else if (direction === DIRECTION.RIGHT) {
+    rootStyles.setProperty(
+      '--slide-transform',
+      `${transformValue - sliderElements[slideCounter].scrollWidth}px`
+    );
+    slideCounter++;
+  }
+};
+
+buttonRight.addEventListener('click', () => moveSlide(DIRECTION.RIGHT));
+buttonLeft.addEventListener('click', () => moveSlide(DIRECTION.LEFT));
+
+slider.addEventListener('transitionend', reorderSlide);
+
+reorderSlide();
 
 
