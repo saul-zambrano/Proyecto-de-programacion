@@ -9,8 +9,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/9cf7825ba1.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{% static 'css/carrito.css' %}">
-    <!-- <script src="{% static 'script/main.js' %}"></script> -->
+    <!-- <script src="{% static 'script/carrito.js' %}" defer></script> -->
 </head>
 <body>
     <header class="header">
@@ -27,7 +28,7 @@
     </header> 
     <main class="main">
         <h1 class="main__title">Tu Pedido</h1>
-        <table class="table-product">
+        <table id="table" class="table-product">
             <thead class="thead-product"> 
                 <tr>
                     <th colspan="2">PRODUCTO</th>
@@ -36,36 +37,53 @@
                 </tr>
             </thead>
             <tbody class="tbody-product">
-                <tr class="tbody-product__row">
-                    <td>
-                        <div class="tbody-product__images">
-                            <img src="{% static 'images/1.png' %}" alt="">
+                {% if request.session.carrito.items %}
+                {% for key, value in request.session.carrito.items %}
+                <tr class="row">
+                    <td class="row-celda">
+                        <div class="row-celda__images">
+                            {% static '' as baseUrl %}
+                            <img src="{{baseUrl}}{{value.images}}" alt=""> 
                         </div>
                     </td>
-                    <td>
-                        <a href="">Marcadores Normas</a>
-                        <p>24.50</p>
-                        <dl>
-                            <dt>Talla:</dt>
-                            <dd>XS</dd>
-                        </dl>
+                    <td class="row-celda">
+                        <p>{{ value.nombre }}</p>  
+                        <p>Precio: {{ value.precio }}</p>
                     </td>
-                    <td>
-                        <input type="number" min="1" max="100" value="1">
-                        <button>Eliminar</button>
+                    <td class="row-celda ">
+                        <div class="row-celda--display">
+                            <a href="{% url  'Add' value.producto_id %}"><i class="fa fa-solid fa-plus"></i></a>
+                            <p class="row-celda__cantidad">{{ value.cantidad }}</p>
+                            <a href="{% url  'Sub' value.producto_id %}"><i class="fa fa-solid fa-minus"></i></a>
+                        </div>
                     </td>
-                    <td>
-                        <p>$50.25</p>
+                    <td class="row-celda">
+                        <p>${{ value.acumulado }}</p>
                     </td>
                 </tr>
-                
-                   
+                {% endfor %}
+                <tr>
+                    <td colspan="4">
+                        <h2 class="container-total__title">Total</h2>
+                        <p class="container-total__total">${{ total_carrito }}</p>
+                        <a class="container-total__button" href="{% url 'cliente' %}">PAGAR PEDIDO</a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="4">
+                        <div>Sin productos</div>
+                    </td>
+                </tr>
+                {% endif %}
             </tbody>
         </table>
-        <section>
-            <h2>Total</h2>
-            <p>67.40</p>
-            <a href="{% url 'cliente' %}">PAGAR PEDIDO</a>
+        <section class="container-total">
+            
+        </section>
+        <section class="container-option">
+            <div><a class="container-option__button" href="{% url 'CLS' %}">Limpiar</a></div>
+            <div><a href="container-option__button">Guardar</a></div>
         </section>
     </main>
 </body>
